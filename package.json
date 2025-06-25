@@ -1,0 +1,16 @@
+{
+  "name": "line-webhook-bot",
+  "version": "1.0.0",
+  "description": "LINE Bot Webhook using Vercel",
+  "main": "api/webhook.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
