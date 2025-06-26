@@ -1,3 +1,4 @@
+import 'node-fetch';
 import { addUserId } from './userStore.js';
 
 export default async function handler(req, res) {
