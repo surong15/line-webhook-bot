@@ -38,7 +38,7 @@ async function handleEvent(event) {
   }
 
   const userId = event.source.userId;
-  addUserId(userId);
+  // addUserId(userId); // 已移除，避免 Vercel 檔案系統錯誤
   const messageText = event.message.text;
   const replyToken = event.replyToken;
 
