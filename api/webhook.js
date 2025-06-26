@@ -42,5 +42,43 @@ async function handleEvent(event) {
   const messageText = event.message.text;
   const replyToken = event.replyToken;
 
-  console.log(`用戶 ${userId} 說: ${messageText}`);
+  if (messageText === '查詢我的用戶ID') {
+    const replyMessage = {
+      type: 'text',
+      text: `你的用戶ID是：${userId}`
+    };
+    await replyToUser(replyToken, replyMessage);
+  }
+}
+
+async function replyToUser(replyToken, message) {
+  const accessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN;
+  
+  if (!accessToken) {
+    console.error('缺少 LINE_CHANNEL_ACCESS_TOKEN');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://api.line.me/v2/bot/message/reply', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({
+        replyToken: replyToken,
+        messages: [message]
+      })
+    });
+
+    if (response.ok) {
+      console.log('回覆成功');
+    } else {
+      const error = await response.text();
+      console.error('回覆失敗:', error);
+    }
+  } catch (error) {
+    console.error('發送錯誤:', error);
+  }
 }
