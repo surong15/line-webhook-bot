@@ -1,5 +1,3 @@
-import { addUserId } from './userStore.js';
-
 export default async function handler(req, res) {
   console.log('收到請求:', req.method);
   
