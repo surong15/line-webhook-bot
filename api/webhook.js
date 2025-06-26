@@ -1,4 +1,3 @@
-import 'node-fetch';
 import { addUserId } from './userStore.js';
 
 export default async function handler(req, res) {
@@ -76,8 +75,8 @@ async function replyToUser(replyToken, message) {
     if (response.ok) {
       console.log('回覆成功');
     } else {
-      const error = await response.text();
-      console.error('回覆失敗:', error);
+      const errorText = await response.text();
+      console.error('回覆失敗:', response.status, errorText);
     }
   } catch (error) {
     console.error('發送錯誤:', error);
